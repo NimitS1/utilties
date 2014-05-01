@@ -9,6 +9,8 @@ def get_comic(start):
     if(m != None):
         url = m.group(1)
         file_name = "Comics/"+url.split('/')[-1]
+        
+        #Checking if the comic actually points to a youtube video. Ignore if that is the case
         if(file_name != 'Comics/play-button.png'):
             urllib.urlretrieve(url,file_name)
             print 'Done:'+file_name
@@ -21,8 +23,10 @@ def get_comic(start):
         print url
     return url
 
+#First comic on explosm
 start = 'http://explosm.net/comics/15/'
 
+#Incase you are rerunning, we will run it from the last saved comic
 f = open('last_comic','r')
 if(f != None):
     start = f.readline()
